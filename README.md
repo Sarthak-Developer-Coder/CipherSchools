@@ -182,45 +182,7 @@ Open **http://localhost:3000** in your browser.
 
 ---
 
-## Data-Flow Diagram
 
-```
-User clicks "Execute Query"
-        │
-        ▼
-┌─────────────────┐
-│  React Frontend  │  ① User types SQL in Monaco Editor and clicks Execute
-│     (Vite)       │
-└────────┬────────┘
-         │  ② Axios POST /api/query/execute  { sql, assignmentId }
-         ▼
-┌─────────────────┐
-│  Express Server  │  ③ queryValidator middleware:
-│   (Node.js)      │     - checks SQL is non-empty
-│                  │     - allows only SELECT statements
-│                  │     - blocks DDL/DML keywords
-└────────┬────────┘
-         │  ④ pg.Pool.query(sanitizedSQL)
-         ▼
-┌─────────────────┐
-│   PostgreSQL     │  ⑤ Executes query against sandbox tables
-│   (Sandbox)      │     → returns rows + field metadata
-└────────┬────────┘
-         │  ⑥ Response: { columns, rows, rowCount }
-         ▼
-┌─────────────────┐
-│  Express Server  │  ⑦ (Optional) If user is logged in,
-│                  │     save Attempt to MongoDB via Mongoose
-└────────┬────────┘
-         │  ⑧ JSON response sent back
-         ▼
-┌─────────────────┐
-│  React Frontend  │  ⑨ setState(result) → ResultsPanel re-renders
-│  ResultsPanel    │     formatted table with columns + rows
-└─────────────────┘
-```
-
-> **Note:** The hand-drawn version of this diagram is required for submission.
 
 ---
 
