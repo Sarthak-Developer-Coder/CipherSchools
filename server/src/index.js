@@ -14,7 +14,19 @@ const app = express();
 
 /* ── Middleware ─────────────────────────── */
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:3000', credentials: true }));
+const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:3000')
+  .split(',')
+  .map((s) => s.trim());
+app.use(
+  cors({
+    origin: (origin, cb) => {
+      // Allow requests with no origin (curl, Postman) or from allowed list
+      if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+      cb(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: '100kb' }));
 
 /* ── Routes ────────────────────────────── */
