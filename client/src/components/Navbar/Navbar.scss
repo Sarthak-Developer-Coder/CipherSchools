@@ -1,0 +1,71 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba($clr-surface, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid $clr-border;
+
+  &__inner {
+    @include flex-between;
+    height: 56px;
+
+    @include respond(md) { height: 64px; }
+  }
+
+  &__brand {
+    @include flex-center;
+    gap: $gap-sm;
+    font-size: $fs-lg;
+    color: $clr-text-heading;
+    font-weight: 600;
+
+    strong { color: $clr-primary-light; }
+  }
+
+  &__icon {
+    font-size: 1.4rem;
+    color: $clr-primary;
+  }
+
+  &__actions {
+    @include flex-center;
+    gap: $gap-sm;
+  }
+
+  &__user {
+    @include flex-center;
+    gap: $gap-xs;
+    color: $clr-text-muted;
+    font-size: $fs-sm;
+  }
+
+  &__btn {
+    @include btn-reset;
+    @include touch-target;
+    @include flex-center;
+    gap: $gap-xs;
+    padding: $gap-sm $gap-md;
+    border-radius: $radius-sm;
+    font-size: $fs-sm;
+    font-weight: 500;
+    color: $clr-text;
+    transition: background 0.2s;
+
+    &:hover { background: $clr-surface-alt; }
+
+    &--primary {
+      background: $clr-primary;
+      color: #fff;
+      &:hover { background: $clr-primary-dark; }
+    }
+
+    &--logout {
+      color: $clr-error;
+      &:hover { background: rgba($clr-error, 0.1); }
+    }
+  }
+}

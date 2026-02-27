@@ -1,0 +1,59 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.assignment {
+  padding-top: $gap-lg;
+  padding-bottom: $gap-2xl;
+
+  &__loading {
+    @include flex-center;
+    min-height: 60vh;
+    color: $clr-text-muted;
+  }
+
+  &__back {
+    @include flex-center;
+    @include touch-target;
+    width: fit-content;
+    gap: $gap-xs;
+    font-size: $fs-sm;
+    color: $clr-text-muted;
+    margin-bottom: $gap-lg;
+    transition: color 0.2s;
+
+    &:hover { color: $clr-primary-light; }
+  }
+
+  /* ─ Layout ───────────────────────────────── */
+  &__layout {
+    @include flex-column;
+    gap: $gap-lg;
+
+    @include respond(lg) {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      align-items: start;
+    }
+
+    @include respond(xl) {
+      grid-template-columns: 420px 1fr;
+    }
+  }
+
+  &__sidebar {
+    @include flex-column;
+    gap: $gap-lg;
+  }
+
+  &__main {
+    @include flex-column;
+    gap: $gap-lg;
+
+    // Make editor + results fill available height on desktop
+    @include respond(lg) {
+      min-height: calc(100vh - 160px);
+
+      .sql-editor { flex: 1; }
+    }
+  }
+}

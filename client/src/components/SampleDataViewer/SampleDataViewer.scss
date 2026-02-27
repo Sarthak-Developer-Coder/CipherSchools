@@ -1,0 +1,95 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use 'sass:color';
+
+.sample-viewer {
+  @include card;
+  @include flex-column;
+  gap: $gap-sm;
+  padding: $gap-lg;
+
+  &__heading {
+    @include flex-center;
+    width: fit-content;
+    gap: $gap-sm;
+    font-size: $fs-md;
+    font-weight: 600;
+    color: $clr-text-heading;
+    svg { color: $clr-primary; }
+  }
+
+  &__table {
+    border: 1px solid $clr-border;
+    border-radius: $radius-sm;
+    overflow: hidden;
+  }
+
+  &__toggle {
+    @include btn-reset;
+    @include touch-target;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: $gap-sm;
+    padding: $gap-sm $gap-md;
+    background: $clr-surface-alt;
+    color: $clr-text;
+    font-size: $fs-sm;
+    transition: background 0.2s;
+
+    &:hover { background: color.adjust($clr-surface-alt, $lightness: 4%); }
+
+    svg { margin-left: auto; color: $clr-text-muted; }
+  }
+
+  &__name {
+    font-family: $font-code;
+    font-weight: 600;
+    color: $clr-primary-light;
+  }
+
+  &__cols {
+    font-size: $fs-xs;
+    color: $clr-text-muted;
+    @include truncate;
+    flex: 1;
+  }
+
+  &__body { padding: $gap-sm; }
+
+  &__loading,
+  &__error {
+    font-size: $fs-sm;
+    padding: $gap-sm;
+  }
+  &__error { color: $clr-error; }
+
+  &__scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__data {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $fs-xs;
+    font-family: $font-code;
+
+    th, td {
+      padding: 6px 12px;
+      text-align: left;
+      white-space: nowrap;
+      border-bottom: 1px solid $clr-border;
+    }
+
+    th {
+      background: $clr-surface-alt;
+      color: $clr-text-muted;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+
+    tbody tr:hover { background: rgba($clr-primary, 0.04); }
+  }
+}

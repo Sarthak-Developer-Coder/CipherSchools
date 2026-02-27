@@ -1,0 +1,83 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.results-panel {
+  @include card;
+  @include flex-column;
+  overflow: hidden;
+
+  &--empty {
+    @include flex-center;
+    min-height: 100px;
+    color: $clr-text-muted;
+    font-size: $fs-sm;
+  }
+
+  &--error {
+    border-color: rgba($clr-error, 0.4);
+  }
+
+  &__header {
+    @include flex-center;
+    gap: $gap-sm;
+    padding: $gap-sm $gap-md;
+    font-size: $fs-sm;
+    font-weight: 600;
+    color: $clr-success;
+    border-bottom: 1px solid $clr-border;
+    width: 100%;
+    justify-content: flex-start;
+
+    &--error {
+      color: $clr-error;
+    }
+  }
+
+  &__count {
+    margin-left: auto;
+    font-weight: 400;
+    color: $clr-text-muted;
+    font-size: $fs-xs;
+  }
+
+  &__pre {
+    padding: $gap-md;
+    font-family: $font-code;
+    font-size: $fs-sm;
+    color: $clr-error;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  &__scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-height: 360px;
+    overflow-y: auto;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $fs-xs;
+    font-family: $font-code;
+
+    th, td {
+      padding: 8px 14px;
+      text-align: left;
+      white-space: nowrap;
+      border-bottom: 1px solid $clr-border;
+    }
+
+    th {
+      background: $clr-surface-alt;
+      color: $clr-text-muted;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    tbody tr:hover { background: rgba($clr-primary, 0.04); }
+  }
+}

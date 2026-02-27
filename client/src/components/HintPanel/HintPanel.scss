@@ -1,0 +1,58 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.hint-panel {
+  @include card;
+  @include flex-column;
+  gap: $gap-md;
+  padding: $gap-lg;
+
+  &__header {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $gap-sm;
+  }
+
+  &__btn {
+    @include btn-reset;
+    @include touch-target;
+    @include flex-center;
+    gap: $gap-xs;
+    padding: $gap-sm $gap-lg;
+    background: linear-gradient(135deg, $clr-primary, #a855f7);
+    color: #fff;
+    font-size: $fs-sm;
+    font-weight: 600;
+    border-radius: $radius-sm;
+    transition: opacity 0.2s;
+
+    svg { font-size: 1rem; }
+    &:hover { opacity: 0.9; }
+    &:disabled { opacity: 0.5; cursor: wait; }
+  }
+
+  &__note {
+    font-size: $fs-xs;
+    color: $clr-text-muted;
+    font-style: italic;
+  }
+
+  &__error {
+    color: $clr-error;
+    font-size: $fs-sm;
+  }
+
+  &__body {
+    background: $clr-surface-alt;
+    border-left: 3px solid $clr-primary;
+    border-radius: $radius-sm;
+    padding: $gap-md;
+  }
+
+  &__text {
+    font-size: $fs-sm;
+    color: $clr-text;
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+}

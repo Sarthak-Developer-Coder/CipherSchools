@@ -1,0 +1,104 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.home {
+  padding-top: $gap-xl;
+  padding-bottom: $gap-2xl;
+
+  &__hero {
+    margin-bottom: $gap-xl;
+  }
+
+  &__title {
+    font-size: $fs-2xl;
+    font-weight: 700;
+    color: $clr-text-heading;
+    margin-bottom: $gap-xs;
+  }
+
+  &__sub {
+    font-size: $fs-md;
+    color: $clr-text-muted;
+  }
+
+  /* ─ Controls ─────────────────────────────── */
+  &__controls {
+    @include flex-column;
+    gap: $gap-md;
+    margin-bottom: $gap-xl;
+
+    @include respond(md) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: $gap-sm;
+    background: $clr-surface;
+    border: 1px solid $clr-border;
+    border-radius: $radius-sm;
+    padding: $gap-sm $gap-md;
+    flex: 1;
+    max-width: 400px;
+
+    svg { color: $clr-text-muted; flex-shrink: 0; }
+
+    input {
+      border: none;
+      outline: none;
+      background: transparent;
+      color: $clr-text;
+      font-size: $fs-sm;
+      width: 100%;
+    }
+  }
+
+  &__filters {
+    display: flex;
+    gap: $gap-xs;
+    flex-wrap: wrap;
+  }
+
+  &__filter {
+    @include btn-reset;
+    @include touch-target;
+    padding: $gap-sm $gap-md;
+    border-radius: $radius-full;
+    font-size: $fs-sm;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: $clr-text-muted;
+    background: $clr-surface;
+    border: 1px solid $clr-border;
+    transition: all 0.2s;
+
+    &:hover { border-color: $clr-primary; color: $clr-text; }
+
+    &--active {
+      background: $clr-primary;
+      color: #fff;
+      border-color: $clr-primary;
+    }
+  }
+
+  /* ─ Grid ──────────────────────────────────── */
+  &__grid {
+    display: grid;
+    gap: $gap-lg;
+    grid-template-columns: 1fr;
+
+    @include respond(md)  { grid-template-columns: repeat(2, 1fr); }
+    @include respond(lg)  { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  &__loading,
+  &__empty {
+    text-align: center;
+    color: $clr-text-muted;
+    padding: $gap-2xl 0;
+  }
+}

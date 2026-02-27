@@ -1,0 +1,47 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use 'sass:color';
+
+.sql-editor {
+  @include card;
+  @include flex-column;
+  overflow: hidden;
+
+  &__toolbar {
+    @include flex-between;
+    padding: $gap-sm $gap-md;
+    border-bottom: 1px solid $clr-border;
+    background: $clr-surface-alt;
+  }
+
+  &__label {
+    font-size: $fs-sm;
+    font-weight: 600;
+    color: $clr-text-heading;
+  }
+
+  &__run {
+    @include btn-reset;
+    @include touch-target;
+    @include flex-center;
+    gap: $gap-xs;
+    padding: $gap-sm $gap-lg;
+    background: $clr-success;
+    color: #fff;
+    font-size: $fs-sm;
+    font-weight: 600;
+    border-radius: $radius-sm;
+    transition: background 0.2s, opacity 0.2s;
+
+    &:hover { background: color.adjust($clr-success, $lightness: -8%); }
+    &:disabled { opacity: 0.6; cursor: not-allowed; }
+  }
+
+  &__monaco {
+    flex: 1;
+    min-height: 180px;
+
+    @include respond(md) { min-height: 240px; }
+    @include respond(lg) { min-height: 300px; }
+  }
+}

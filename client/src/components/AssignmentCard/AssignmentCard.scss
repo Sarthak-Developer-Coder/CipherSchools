@@ -1,0 +1,66 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.assignment-card {
+  @include card;
+  @include flex-column;
+  padding: $gap-lg;
+  gap: $gap-md;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+
+  &:hover {
+    border-color: $clr-primary;
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+
+  &__header {
+    @include flex-between;
+  }
+
+  &__badge {
+    font-size: $fs-xs;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 10px;
+    border-radius: $radius-full;
+
+    &--easy   { background: rgba($clr-easy, 0.15);   color: $clr-easy; }
+    &--medium { background: rgba($clr-medium, 0.15); color: $clr-medium; }
+    &--hard   { background: rgba($clr-hard, 0.15);   color: $clr-hard; }
+  }
+
+  &__tables {
+    font-size: $fs-xs;
+    color: $clr-text-muted;
+  }
+
+  &__title {
+    font-size: $fs-lg;
+    font-weight: 600;
+    color: $clr-text-heading;
+  }
+
+  &__desc {
+    font-size: $fs-sm;
+    color: $clr-text-muted;
+    @include truncate(3);
+    flex: 1;
+  }
+
+  &__footer {
+    border-top: 1px solid $clr-border;
+    padding-top: $gap-sm;
+  }
+
+  &__cta {
+    @include flex-center;
+    @include touch-target;
+    gap: $gap-xs;
+    font-size: $fs-sm;
+    font-weight: 500;
+    color: $clr-primary-light;
+    width: fit-content;
+  }
+}

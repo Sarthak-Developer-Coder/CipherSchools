@@ -1,0 +1,35 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'reset';
+
+/* ── Global styles ─────────────────────────────── */
+body {
+  font-family: $font-body;
+  background-color: $clr-bg;
+  color: $clr-text;
+}
+
+/* ── Utility classes ───────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 $gap-sm;
+
+  @include respond(sm) {
+    padding: 0 $gap-md;
+  }
+}
+
+/* Scrollbar styling (Webkit) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: $clr-surface;
+}
+::-webkit-scrollbar-thumb {
+  background: $clr-border;
+  border-radius: 3px;
+}
